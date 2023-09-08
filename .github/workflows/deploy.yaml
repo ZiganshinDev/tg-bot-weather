@@ -13,7 +13,6 @@ jobs:
     env:
       HOST: root@31.129.32.180
       DEPLOY_DIRECTORY: /root/apps/tg-bot-weather
-      CONFIG_PATH: /root/apps/tg-bot-weather/config/prod.yaml
       ENV_FILE_PATH: /root/apps/tg-bot-weather/config.env
 
     steps:
@@ -57,8 +56,7 @@ jobs:
           ssh -i deploy_key.pem -o StrictHostKeyChecking=no ${{ env.HOST }} "\
           touch ${{ env.ENV_FILE_PATH }} && \
           chmod 600 ${{ env.ENV_FILE_PATH }} && \
-          echo 'CONFIG_PATH=${{ env.CONFIG_PATH }}' > ${{ env.ENV_FILE_PATH }} && \
-          echo 'YANDEX_API_KEY=${{ secrets.YANDEX_API_KEY }}' >> ${{ env.ENV_FILE_PATH }}
+          echo 'YANDEX_API_KEY=${{ secrets.YANDEX_API_KEY }}' >> ${{ env.ENV_FILE_PATH }} && \
           echo 'OPENWEATHER_API_KEY=${{ secrets.OPENWEATHER_API_KEY }}' >> ${{ env.ENV_FILE_PATH }}
           echo 'TG_TOKEN=${{ secrets.TG_TOKEN }}' >> ${{ env.ENV_FILE_PATH }}"
       - name: Copy systemd service file
