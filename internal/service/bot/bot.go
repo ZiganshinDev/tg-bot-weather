@@ -97,7 +97,11 @@ func handleWeather(bot *tb.Bot) func(c tb.Context) error {
 	return func(c tb.Context) error {
 		userID := c.Sender().ID
 		userText := c.Text()
-		c.Send("What city?")
+		if err := c.Send("What city?"); err != nil {
+			logMessage(userID, fmt.Sprintf("Error sending message: %v", err))
+			return err
+		}
+
 		logMessage(userID, userText)
 
 		bot.Handle(tb.OnText, func(c tb.Context) error {
