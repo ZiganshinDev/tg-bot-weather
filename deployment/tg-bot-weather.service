@@ -1,0 +1,15 @@
+[Unit]
+Description=Tg Bot
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/root/apps/tgbot
+ExecStart=/root/apps/vkbot/tgbot
+Restart=always
+RestartSec=4
+StandardOutput=inherit
+EnvironmentFile=/root/apps/vkbot/config.env
+
+[Install]
+WantedBy=multi-user.target
