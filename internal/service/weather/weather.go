@@ -8,7 +8,7 @@ import (
 	"os"
 	"time"
 
-	locationfind "github.com/ZiganshinDev/telebot/pkg/locationFind"
+	locationfind "github.com/ZiganshinDev/telebot/internal/service/locationFind"
 )
 
 type Weather struct {
