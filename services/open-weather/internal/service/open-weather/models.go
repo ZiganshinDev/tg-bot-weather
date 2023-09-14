@@ -1,13 +1,4 @@
-package locationfind
-
-import (
-	"encoding/json"
-	"fmt"
-	"log"
-	"net/http"
-	"os"
-	"time"
-)
+package open_weather
 
 type Location struct {
 	Coord struct {
@@ -52,57 +43,4 @@ type Location struct {
 	ID       int    `json:"id"`
 	Name     string `json:"name"`
 	Cod      int    `json:"cod"`
-}
-
-type Client struct {
-	http   *http.Client
-	apiKey string
-	city   string
-}
-
-func NewClient(city string) *Client {
-	httpClient := &http.Client{Timeout: 10 * time.Second}
-
-	apiKey := os.Getenv("OPENWEATHER_API_KEY")
-	if apiKey == "" {
-		log.Fatal("Env: apiKey must be set")
-	}
-
-	return &Client{httpClient, apiKey, city}
-}
-
-func (c *Client) fetchLocation() (*Location, error) {
-	method := "GET"
-	url := fmt.Sprintf("http://api.openweathermap.org/data/2.5/weather?q=%v&APPID=%v", c.city, c.apiKey)
-
-	req, err := http.NewRequest(method, url, nil)
-	if err != nil {
-		return &Location{}, nil
-	}
-
-	resp, err := c.http.Do(req)
-	if err != nil {
-		return &Location{}, nil
-	}
-
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		log.Println(resp.Status)
-		return &Location{}, nil
-	}
-
-	var location Location
-	_ = json.NewDecoder(resp.Body).Decode(&location)
-
-	return &location, nil
-}
-
-func ReflectLocation(c *Client) (float64, float64) {
-	res, err := c.fetchLocation()
-	if err != nil {
-		log.Println(err)
-	}
-
-	return res.Coord.Lat, res.Coord.Lon
 }

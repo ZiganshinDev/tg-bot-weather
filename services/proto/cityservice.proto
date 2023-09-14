@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cityservice;
+
+option go_package = "github.com/ZiganshinDev/tg-bot-weather/services/proto";
+
+service CityService {
+    rpc GetCityCoordinates (CityRequest) returns (CoordinatesReply);
+}
+
+message CityRequest {
+    string cityName = 1;
+}
+
+message CoordinatesReply {
+    double latitude = 1;
+    double longitude = 2;
+}

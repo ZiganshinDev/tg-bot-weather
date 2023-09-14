@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package api_gateway;
+
+option go_package = "github.com/ZiganshinDev/tg-bot-weather/services/proto";
+
+service ApiGatewayService {
+    rpc GetUserCity (UserCityRequest) returns (UserWeatherReply);
+}
+
+message UserCityRequest {
+    string cityName = 1;
+}
+
+message UserWeatherReply {
+    string weather = 1;
+}

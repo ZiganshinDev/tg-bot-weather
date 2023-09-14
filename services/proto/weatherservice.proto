@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package weatherservice;
+
+option go_package = "github.com/ZiganshinDev/tg-bot-weather/services/proto";
+
+service WeatherService {
+    rpc GetWeather (WeatherRequest) returns (WeatherReply);
+}
+
+message WeatherRequest {
+    double latitude = 1;
+    double longitude = 2;
+}
+
+message WeatherReply {
+    string conditions = 1;;
+}
