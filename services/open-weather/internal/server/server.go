@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	port = flag.Int("port", 50051, "The server port")
+	port = flag.Int("port", 50052, "The server port")
 )
 
 type Server struct {
@@ -20,37 +20,37 @@ type Server struct {
 }
 
 type server struct {
-	pb.UnimplementedApiGatewayServiceServer
-	w WeatherGetter
+	pb.UnimplementedCityServiceServer
+	c CoordinatesGetter
 }
 
-type WeatherGetter interface {
-	GetWeather(string) string
+type CoordinatesGetter interface {
+	GetCoordinates(string) (float64, float64, error)
 }
 
-func (s *server) GetWeather(city string) string {
-	return s.w.GetWeather(city)
-}
-
-func (s *server) GetUserCity(ctx context.Context, in *pb.UserCityRequest) (*pb.UserWeatherReply, error) {
-	city := in.GetCityName()
+func (s *server) GetCityCoordinates(ctx context.Context, in *pb.CityRequest) (*pb.CoordinatesReply, error) {
+	lat, lon, err := s.c.GetCoordinates(in.GetCityName())
+	if err != nil {
+		log.Println(err)
+	}
 
 	log.Printf("Recived: %v", in.GetCityName())
-	return &pb.UserWeatherReply{Weather: s.GetWeather(city)}, nil
+	return &pb.CoordinatesReply{Latitude: lat, Longitude: lon}, nil
 }
 
 func New() *Server {
 	s := grpc.NewServer()
+
 	return &Server{s: s}
 }
 
-func (s *Server) Run(weather WeatherGetter) {
+func (s *Server) Start(c CoordinatesGetter) {
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", *port))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	pb.RegisterApiGatewayServiceServer(s.s, &server{w: weather})
+	pb.RegisterCityServiceServer(s.s, &server{c: c})
 	log.Printf("server listening at %v", lis.Addr())
 	if err := s.s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)

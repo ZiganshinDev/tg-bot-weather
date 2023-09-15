@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	port = flag.Int("port", 50051, "The server port")
+	port = flag.Int("port", 50053, "The server port")
 )
 
 type Server struct {
@@ -20,37 +20,37 @@ type Server struct {
 }
 
 type server struct {
-	pb.UnimplementedApiGatewayServiceServer
+	pb.UnimplementedWeatherServiceServer
 	w WeatherGetter
 }
 
 type WeatherGetter interface {
-	GetWeather(string) string
+	GetWeather(float64, float64) (string, error)
 }
 
-func (s *server) GetWeather(city string) string {
-	return s.w.GetWeather(city)
-}
+func (s *server) GetWeather(ctx context.Context, in *pb.WeatherRequest) (*pb.WeatherReply, error) {
+	weather, err := s.w.GetWeather(in.GetLatitude(), in.GetLongitude())
+	if err != nil {
+		return nil, fmt.Errorf("%w", err)
+	}
 
-func (s *server) GetUserCity(ctx context.Context, in *pb.UserCityRequest) (*pb.UserWeatherReply, error) {
-	city := in.GetCityName()
-
-	log.Printf("Recived: %v", in.GetCityName())
-	return &pb.UserWeatherReply{Weather: s.GetWeather(city)}, nil
+	log.Printf("Recived: %v, %v", in.GetLatitude(), in.GetLongitude())
+	return &pb.WeatherReply{Conditions: weather}, nil
 }
 
 func New() *Server {
 	s := grpc.NewServer()
+
 	return &Server{s: s}
 }
 
-func (s *Server) Run(weather WeatherGetter) {
+func (s *Server) Start(weather WeatherGetter) {
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", *port))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	pb.RegisterApiGatewayServiceServer(s.s, &server{w: weather})
+	pb.RegisterWeatherServiceServer(s.s, &server{w: weather})
 	log.Printf("server listening at %v", lis.Addr())
 	if err := s.s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)

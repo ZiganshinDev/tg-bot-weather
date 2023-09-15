@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/ZiganshinDev/tg-bot-weather/services/tgbot/internal/service/client"
+	"github.com/ZiganshinDev/tg-bot-weather/services/tgbot/internal/client"
 	"github.com/ZiganshinDev/tg-bot-weather/services/tgbot/internal/service/tgbot"
 	"github.com/joho/godotenv"
 )

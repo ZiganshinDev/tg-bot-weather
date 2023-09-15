@@ -15,19 +15,26 @@ var (
 	addr = flag.String("addr", "localhost:50053", "the address to connect to")
 )
 
-func GetWeather(lan float64, lon float64) string {
-	// Set up a connection to the server.
+type Client struct {
+	conn *grpc.ClientConn
+}
+
+func New() (*Client, error) {
 	conn, err := grpc.Dial(*addr, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Printf("did not connect: %v", err)
 	}
-	defer conn.Close()
-	c := pb.NewWeatherServiceClient(conn)
+
+	return &Client{conn: conn}, nil
+}
+
+func (c *Client) GetWeather(lan float64, lon float64) string {
+	cl := pb.NewWeatherServiceClient(c.conn)
 
 	// Contact the server and print out its response.
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	r, err := c.GetWeather(ctx, &pb.WeatherRequest{Latitude: lan, Longitude: lon})
+	r, err := cl.GetWeather(ctx, &pb.WeatherRequest{Latitude: lan, Longitude: lon})
 	if err != nil {
 		log.Printf("could not greet: %v", err)
 	}

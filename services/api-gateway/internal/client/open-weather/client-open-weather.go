@@ -15,19 +15,26 @@ var (
 	addrs = flag.String("addrs", "localhost:50052", "the address to connect to")
 )
 
-func GetCityCoordinates(city string) (float64, float64) {
-	// Set up a connection to the server.
+type Client struct {
+	conn *grpc.ClientConn
+}
+
+func New() (*Client, error) {
 	conn, err := grpc.Dial(*addrs, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Printf("did not connect: %v", err)
 	}
-	defer conn.Close()
-	c := pb.NewCityServiceClient(conn)
+
+	return &Client{conn: conn}, nil
+}
+
+func (c *Client) GetCityCoordinates(city string) (float64, float64) {
+	cl := pb.NewCityServiceClient(c.conn)
 
 	// Contact the server and print out its response.
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	r, err := c.GetCityCoordinates(ctx, &pb.CityRequest{CityName: city})
+	r, err := cl.GetCityCoordinates(ctx, &pb.CityRequest{CityName: city})
 	if err != nil {
 		log.Printf("could not greet: %v", err)
 	}

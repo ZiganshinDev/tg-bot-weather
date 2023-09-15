@@ -14,10 +14,6 @@ type Client struct {
 	apiKey string
 }
 
-type WeatherGetter interface {
-	GetWeather(lat float64, lon float64) error
-}
-
 func New() (*Client, error) {
 	httpClient := &http.Client{Timeout: 10 * time.Second}
 
