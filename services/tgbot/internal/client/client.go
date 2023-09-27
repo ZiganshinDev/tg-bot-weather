@@ -7,13 +7,13 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/ZiganshinDev/tg-bot-weather/services/proto"
+	pb "github.com/ZiganshinDev/tg-bot-weather/services/tgbot/proto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
 
 var (
-	addr = flag.String("addr", "localhost:50051", "the address to connect to")
+	addr = flag.String("addr", "api-gateway-app:50051", "the address to connect to")
 )
 
 type Client struct {

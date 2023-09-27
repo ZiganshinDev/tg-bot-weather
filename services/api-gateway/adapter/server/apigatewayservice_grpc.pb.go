@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v4.23.2
-// source: services/proto/apigatewayservice.proto
+// source: adapter/server/apigatewayservice.proto
 
 package proto
 
@@ -101,5 +101,5 @@ var ApiGatewayService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "services/proto/apigatewayservice.proto",
+	Metadata: "adapter/server/apigatewayservice.proto",
 }

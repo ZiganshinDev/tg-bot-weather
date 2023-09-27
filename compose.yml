@@ -1,0 +1,30 @@
+version: '3'
+services:
+  tgbot-app:
+    build:
+      context: services/tgbot
+    depends_on:
+      - api-gateway-app
+    ports:
+      - "8080:8080"
+
+  weather-app:
+    build:
+      context: services/yandex-weather
+    ports:
+      - "50053:50053"
+
+  location-app:
+    build:
+      context: services/open-weather
+    ports:
+      - "50052:50052"
+
+  api-gateway-app:
+    build:
+      context: services/api-gateway
+    depends_on:
+      - weather-app
+      - location-app
+    ports:
+      - "50051:50051"

@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v4.23.2
-// source: services/proto/apigatewayservice.proto
+// source: adapter/server/apigatewayservice.proto
 
 package proto
 
@@ -31,7 +31,7 @@ type UserCityRequest struct {
 func (x *UserCityRequest) Reset() {
 	*x = UserCityRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_services_proto_apigatewayservice_proto_msgTypes[0]
+		mi := &file_adapter_server_apigatewayservice_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -44,7 +44,7 @@ func (x *UserCityRequest) String() string {
 func (*UserCityRequest) ProtoMessage() {}
 
 func (x *UserCityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_services_proto_apigatewayservice_proto_msgTypes[0]
+	mi := &file_adapter_server_apigatewayservice_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +57,7 @@ func (x *UserCityRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserCityRequest.ProtoReflect.Descriptor instead.
 func (*UserCityRequest) Descriptor() ([]byte, []int) {
-	return file_services_proto_apigatewayservice_proto_rawDescGZIP(), []int{0}
+	return file_adapter_server_apigatewayservice_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *UserCityRequest) GetCityName() string {
@@ -78,7 +78,7 @@ type UserWeatherReply struct {
 func (x *UserWeatherReply) Reset() {
 	*x = UserWeatherReply{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_services_proto_apigatewayservice_proto_msgTypes[1]
+		mi := &file_adapter_server_apigatewayservice_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -91,7 +91,7 @@ func (x *UserWeatherReply) String() string {
 func (*UserWeatherReply) ProtoMessage() {}
 
 func (x *UserWeatherReply) ProtoReflect() protoreflect.Message {
-	mi := &file_services_proto_apigatewayservice_proto_msgTypes[1]
+	mi := &file_adapter_server_apigatewayservice_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -104,7 +104,7 @@ func (x *UserWeatherReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserWeatherReply.ProtoReflect.Descriptor instead.
 func (*UserWeatherReply) Descriptor() ([]byte, []int) {
-	return file_services_proto_apigatewayservice_proto_rawDescGZIP(), []int{1}
+	return file_adapter_server_apigatewayservice_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *UserWeatherReply) GetWeather() string {
@@ -114,10 +114,10 @@ func (x *UserWeatherReply) GetWeather() string {
 	return ""
 }
 
-var File_services_proto_apigatewayservice_proto protoreflect.FileDescriptor
+var File_adapter_server_apigatewayservice_proto protoreflect.FileDescriptor
 
-var file_services_proto_apigatewayservice_proto_rawDesc = []byte{
-	0x0a, 0x26, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x73, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+var file_adapter_server_apigatewayservice_proto_rawDesc = []byte{
+	0x0a, 0x26, 0x61, 0x64, 0x61, 0x70, 0x74, 0x65, 0x72, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72,
 	0x2f, 0x61, 0x70, 0x69, 0x67, 0x61, 0x74, 0x65, 0x77, 0x61, 0x79, 0x73, 0x65, 0x72, 0x76, 0x69,
 	0x63, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0b, 0x61, 0x70, 0x69, 0x5f, 0x67, 0x61,
 	0x74, 0x65, 0x77, 0x61, 0x79, 0x22, 0x2d, 0x0a, 0x0f, 0x55, 0x73, 0x65, 0x72, 0x43, 0x69, 0x74,
@@ -140,23 +140,23 @@ var file_services_proto_apigatewayservice_proto_rawDesc = []byte{
 }
 
 var (
-	file_services_proto_apigatewayservice_proto_rawDescOnce sync.Once
-	file_services_proto_apigatewayservice_proto_rawDescData = file_services_proto_apigatewayservice_proto_rawDesc
+	file_adapter_server_apigatewayservice_proto_rawDescOnce sync.Once
+	file_adapter_server_apigatewayservice_proto_rawDescData = file_adapter_server_apigatewayservice_proto_rawDesc
 )
 
-func file_services_proto_apigatewayservice_proto_rawDescGZIP() []byte {
-	file_services_proto_apigatewayservice_proto_rawDescOnce.Do(func() {
-		file_services_proto_apigatewayservice_proto_rawDescData = protoimpl.X.CompressGZIP(file_services_proto_apigatewayservice_proto_rawDescData)
+func file_adapter_server_apigatewayservice_proto_rawDescGZIP() []byte {
+	file_adapter_server_apigatewayservice_proto_rawDescOnce.Do(func() {
+		file_adapter_server_apigatewayservice_proto_rawDescData = protoimpl.X.CompressGZIP(file_adapter_server_apigatewayservice_proto_rawDescData)
 	})
-	return file_services_proto_apigatewayservice_proto_rawDescData
+	return file_adapter_server_apigatewayservice_proto_rawDescData
 }
 
-var file_services_proto_apigatewayservice_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_services_proto_apigatewayservice_proto_goTypes = []interface{}{
+var file_adapter_server_apigatewayservice_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_adapter_server_apigatewayservice_proto_goTypes = []interface{}{
 	(*UserCityRequest)(nil),  // 0: api_gateway.UserCityRequest
 	(*UserWeatherReply)(nil), // 1: api_gateway.UserWeatherReply
 }
-var file_services_proto_apigatewayservice_proto_depIdxs = []int32{
+var file_adapter_server_apigatewayservice_proto_depIdxs = []int32{
 	0, // 0: api_gateway.ApiGatewayService.GetUserCity:input_type -> api_gateway.UserCityRequest
 	1, // 1: api_gateway.ApiGatewayService.GetUserCity:output_type -> api_gateway.UserWeatherReply
 	1, // [1:2] is the sub-list for method output_type
@@ -166,13 +166,13 @@ var file_services_proto_apigatewayservice_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_services_proto_apigatewayservice_proto_init() }
-func file_services_proto_apigatewayservice_proto_init() {
-	if File_services_proto_apigatewayservice_proto != nil {
+func init() { file_adapter_server_apigatewayservice_proto_init() }
+func file_adapter_server_apigatewayservice_proto_init() {
+	if File_adapter_server_apigatewayservice_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_services_proto_apigatewayservice_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_adapter_server_apigatewayservice_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UserCityRequest); i {
 			case 0:
 				return &v.state
@@ -184,7 +184,7 @@ func file_services_proto_apigatewayservice_proto_init() {
 				return nil
 			}
 		}
-		file_services_proto_apigatewayservice_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_adapter_server_apigatewayservice_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UserWeatherReply); i {
 			case 0:
 				return &v.state
@@ -201,18 +201,18 @@ func file_services_proto_apigatewayservice_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_services_proto_apigatewayservice_proto_rawDesc,
+			RawDescriptor: file_adapter_server_apigatewayservice_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_services_proto_apigatewayservice_proto_goTypes,
-		DependencyIndexes: file_services_proto_apigatewayservice_proto_depIdxs,
-		MessageInfos:      file_services_proto_apigatewayservice_proto_msgTypes,
+		GoTypes:           file_adapter_server_apigatewayservice_proto_goTypes,
+		DependencyIndexes: file_adapter_server_apigatewayservice_proto_depIdxs,
+		MessageInfos:      file_adapter_server_apigatewayservice_proto_msgTypes,
 	}.Build()
-	File_services_proto_apigatewayservice_proto = out.File
-	file_services_proto_apigatewayservice_proto_rawDesc = nil
-	file_services_proto_apigatewayservice_proto_goTypes = nil
-	file_services_proto_apigatewayservice_proto_depIdxs = nil
+	File_adapter_server_apigatewayservice_proto = out.File
+	file_adapter_server_apigatewayservice_proto_rawDesc = nil
+	file_adapter_server_apigatewayservice_proto_goTypes = nil
+	file_adapter_server_apigatewayservice_proto_depIdxs = nil
 }

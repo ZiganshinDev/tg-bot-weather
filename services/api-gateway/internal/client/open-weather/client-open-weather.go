@@ -6,13 +6,13 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/ZiganshinDev/tg-bot-weather/services/proto"
+	pb "github.com/ZiganshinDev/tg-bot-weather/services/api-gateway/adapter/locationclient"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
 
 var (
-	addrs = flag.String("addrs", "localhost:50052", "the address to connect to")
+	addrs = flag.String("addrs", "location-app:50052", "the address to connect to")
 )
 
 type Client struct {

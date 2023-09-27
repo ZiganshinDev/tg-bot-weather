@@ -7,7 +7,7 @@ import (
 	"log"
 	"net"
 
-	pb "github.com/ZiganshinDev/tg-bot-weather/services/proto"
+	pb "github.com/ZiganshinDev/tg-bot-weather/services/open-weather/proto"
 	"google.golang.org/grpc"
 )
 

@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v4.23.2
-// source: services/proto/cityservice.proto
+// source: adapter/locationclient/cityservice.proto
 
 package proto
 
@@ -101,5 +101,5 @@ var CityService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "services/proto/cityservice.proto",
+	Metadata: "adapter/locationclient/cityservice.proto",
 }
